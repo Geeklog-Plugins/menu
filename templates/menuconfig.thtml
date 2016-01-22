@@ -1,0 +1,143 @@
+
+<script type="text/javascript">
+    document.getElementById('menu').style.display=''
+</script>
+
+    <div class="glfform">
+
+    <form method="post" action="{form_action}" id="mbconfig" enctype="multipart/form-data" >
+    <input type="hidden" name="menu_id" id="menu_id" value="{menu_id}"{xhtml}>
+    <input type="hidden" name="menutype" id="menutype" value="{menutype}"{xhtml}>
+
+	 <fieldset>
+      <legend>{LANG_MENU01[menu_properties]} {menu_name}</legend>
+      <div>
+        <label for="menuactive">{LANG_MENU01[active]}</label>
+        <input type="checkbox" id="menuactive" name="menuactive" value="1"{menuactive}{xhtml}>
+      </div>
+      <div>
+        <label for="group">{LANG_MENU01[permission]}</label>
+        {group_select}
+      </div>
+	  </fieldset>
+
+	  <fieldset style="display:{menu_alignment_show};">
+      <legend>{LANG_MENU01[menu_alignment]}</legend>
+      <div style="display:{menu_alignment_show};">
+        <label>{LANG_MENU01[alignment_question]}:</label>
+        &nbsp;&nbsp;&nbsp;{LANG_MENU01[align_left]}:&nbsp;<input type="radio" name="malign" value="1" {alignment_left_checked}{xhtml}>&nbsp;&nbsp;&nbsp;
+        {LANG_MENU01[align_right]}:&nbsp;<input type="radio" name="malign" value="0" {alignment_right_checked}{xhtml}>
+      </div>
+	  </fieldset>
+
+      <fieldset>
+      <legend>{LANG_MENU01[menu_color_options]}</legend>
+
+      <div style="display:{main_menu_bg_color_show};">
+        <label>{lang_main_menu_bg_color}</label>
+        <input id="tmbgcolor" name="tmbgcolor" type="hidden" size="7" value="{tmbgcolor}" {xhtml}>&nbsp;
+        <input type="text" name="tmbg_sample" id="tmbg_sample" size="7" maxlength="7" value="{tmbgcolor}" style="vertical-align:middle;background-color:{tmbgcolor};"{xhtml}>
+		
+		&nbsp;&nbsp;<small>{LANG_MENU01[not_used]}</small>
+
+      </div>
+
+      <div style="display:{main_menu_hover_bg_color_show};">
+        <label>{lang_main_menu_hover_bg_color}</label>
+        <input id="tmhcolor" name="tmhcolor" type="hidden" size="7" value="{tmhcolor}"{xhtml}>&nbsp;
+        <input type="text" name="tmh_sample" id="tmh_sample" size="7" maxlength="7" value="{tmhcolor}" style="vertical-align:middle;background-color:{tmhcolor};"{xhtml}>
+
+        &nbsp;&nbsp;<small>{LANG_MENU01[not_used]}</small>
+
+      </div>
+
+      <div style="display:{main_menu_text_color_show};">
+        <label>{lang_main_menu_text_color}</label>
+        <input id="tmtcolor" name="tmtcolor" type="hidden" size="7" value="{tmtcolor}" {xhtml}>&nbsp;
+        <input type="text" name="tmt_sample" id="tmt_sample" size="7" maxlength="7" value="{tmtcolor}" style="vertical-align:middle;background-color:{tmtcolor};"{xhtml}>
+      </div>
+
+      <div style="display:{main_menu_hover_text_color_show};">
+        <label>{lang_main_menu_hover_text_color}</label>
+        <input id="tmthcolor" name="tmthcolor" type="hidden" size="7" value="{tmthcolor}" {xhtml}>&nbsp;
+        <input type="text" name="tmth_sample" id="tmth_sample" size="7" maxlength="7" value="{tmthcolor}" style="vertical-align:middle;background-color:{tmthcolor};"{xhtml}>
+      </div>
+
+      <div style="display:{submenu_text_color_show};">
+        <label>{lang_submenu_text_color}</label>
+        <input id="smtcolor" name="smtcolor" type="hidden" size="7" value="{smtcolor}" {xhtml}>&nbsp;
+        <input type="text" name="smt_sample" id="smt_sample" size="7" maxlength="7" value="{smtcolor}" style="vertical-align:middle;background-color:{smtcolor};"{xhtml}>
+      </div>
+
+      <div style="display:{submenu_hover_text_color_show};">
+        <label>{lang_submenu_hover_text_color}</label>
+        <input id="smthcolor" name="smthcolor" type="hidden" size="7" value="{smthcolor}" {xhtml}>&nbsp;
+        <input type="text" name="smth_sample" id="smth_sample" size="7" maxlength="7" value="{smthcolor}" style="vertical-align:middle;background-color:{smthcolor};"{xhtml}>
+      </div>
+
+      <div style="display:{submenu_background_color_show};">
+        <label>{lang_submenu_background_color}</label>
+        <input id="smbgcolor" name="smbgcolor" type="hidden" size="7" value="{smbgcolor}" {xhtml}>&nbsp;
+        <input type="text" name="smbg_sample" id="smbg_sample" size="7" maxlength="7" value="{smbgcolor}" style="vertical-align:middle;background-color:{smbgcolor};"{xhtml}>
+      </div>
+
+      <div style="display:{submenu_hover_bg_color_show};">
+        <label>{lang_submenu_hover_bg_color}</label>
+        <input id="smhbgcolor" name="smhbgcolor" type="hidden" size="7" value="{smhbgcolor}" {xhtml}>&nbsp;
+        <input type="text" name="smhbg_sample" id="smhbg_sample" size="7" maxlength="7" value="{smhbgcolor}" style="vertical-align:middle;background-color:{smhbgcolor};"{xhtml}>
+     </div>
+
+      <div style="display:{submenu_highlight_color_show};">
+        <label>{lang_submenu_highlight_color}</label>
+        <input id="smhcolor" name="smhcolor" type="hidden" size="7" value="{smhcolor}" {xhtml}>&nbsp;
+        <input type="text" name="smh_sample" id="smh_sample" size="7" maxlength="7" value="{smhcolor}" style="vertical-align:middle;background-color:{smhcolor};"{xhtml}>
+      </div>
+
+      <div style="display:{submenu_shadow_color_show};">
+        <label>{lang_submenu_shadow_color}</label>
+        <input id="smscolor" name="smscolor" type="hidden" size="7" value="{smscolor}" {xhtml}>&nbsp;
+        <input type="text" name="sms_sample" id="sms_sample" size="7" maxlength="7" value="{smscolor}" style="vertical-align:middle;background-color:{smscolor};"{xhtml}>
+      </div>
+	  </fieldset>
+
+     <fieldset style="display:{use_images_show};">
+      <legend>{LANG_MENU01[menu_graphics]}</legend>
+
+      <div style="display:{use_images_show};">
+        <label>{LANG_MENU01[graphics_or_colors]}</label>
+        &nbsp;&nbsp;&nbsp;{LANG_MENU01[graphics]}:&nbsp;
+        <input type="radio" name="gorc" value="1" {graphics_selected}{xhtml}>&nbsp;&nbsp;&nbsp;
+        {LANG_MENU01[colors]}:&nbsp;<input type="radio" name="gorc" value="0" {colors_selected}{xhtml}>
+      </div>
+
+      <div style="display:{menu_bg_filename_show};">
+        <label>{LANG_MENU01[menu_bg_image]}</label>
+        <input type="file" id="bgimg" name="bgimg" size="20" value=""{xhtml}>
+        &nbsp;{LANG_MENU01[currently]}:
+		&nbsp;<img src="{site_url}/images/menu/{menu_bg_filename}" width="27" height="27" style="vertical-align:middle;border:none;" alt="" {xhtml}>
+      </div>
+
+      <div style="display:{menu_hover_filename_show};">
+        <label>{LANG_MENU01[menu_hover_image]}</label>
+        <input type="file" id="hvimg" name="hvimg" size="20" value=""{xhtml}>
+        &nbsp;{LANG_MENU01[currently]}:
+		&nbsp;<img src="{site_url}/images/menu/{menu_hover_filename}" width="27" height="27" style="vertical-align:middle;border:none;" alt="" {xhtml}>
+      </div>
+
+      <div style="display:{menu_parent_filename_show};">
+        <label>{LANG_MENU01[parent_item_image]}</label>
+        <input type="file" id="piimg" name="piimg" size="20" value=""{xhtml}>
+        &nbsp;{LANG_MENU01[currently]}:
+		&nbsp;<img id="cpiimage" src="{site_url}/images/menu/{menu_parent_filename}" style="vertical-align:middle;border:none;" alt="" {xhtml}>
+      </div>
+	  </fieldset>
+
+      <div style="text-align:center;padding-top:20px;padding-bottom:10px;">
+        <input type="hidden" id="mode" name="mode" value="savecfg"{xhtml}>
+        <input type="submit" id="execute" name="execute" value="{LANG_MENU01[save]}"{xhtml}>
+        <input type="reset"  id="reset"   name="reset"   value="{LANG_MENU01[reset]}"{xhtml}>
+        <input type="submit" id="defaults" name="defaults"  value="{LANG_MENU01[defaults]}" onclick="return confirm('{LANG_MENU01[confirm_reset]}');" {xhtml}>
+      </div>
+    </form>
+  </div>
+

@@ -1,0 +1,34 @@
+<script type="text/javascript">
+    document.getElementById('menu').style.display='';
+window.addEvent('load',function() {
+    var myValidator = new fValidator("newmenu");
+});
+</script>
+  <div class="glfform">
+    <form method="post" action="{form_action}" id="newmenu">
+    <div>
+      <div class="required">
+        <p><label for="menuname">{label}:</label>
+        <input class="fValidate['required']" type="text" id="menuname" name="menuname" size="48" value="{menuname}"{xhtml}></p>
+      </div>
+      <div class="required">
+        <p><label for="menutype">{menu_type}:</label>
+        {menutype_select}</p>
+      </div>
+      <div class="required">
+        <p><label for="menuactive">{active}:</label>
+        <input type="checkbox" id="menuactive" name="menuactive" value="1"{xhtml}></p>
+      </div>
+      <div class="required">
+        <p><label for="group">{permission}:</label>
+        {group_select}</p>
+      </div>
+    <div style="text-align:center;padding-top:20px;padding-bottom:10px;">
+      <input type="hidden" id="mode" name="mode" value="savenewmenu"{xhtml}>
+      <input type="submit" id="execute" name="execute" value="{save}"{xhtml}>&nbsp;&nbsp;
+      <input type="submit" id="cancel" name="cancel" value="{cancel}"{xhtml}>
+    </div>
+  </div>
+  </form>
+  </div>
+

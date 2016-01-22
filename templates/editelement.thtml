@@ -1,0 +1,81 @@
+<script type="text/javascript">
+    document.getElementById('menu').style.display=''
+</script>
+
+<div class="glfform">
+  <form method="post" action="{form_action}">
+    <input type="hidden" id="menu" name="menu" value="{menu}"{xhtml}>
+    <input type="hidden" id="id" name="id" value="{mid}"{xhtml}>
+
+      <div class="required">
+        <p><label for="pid">{LANG_MENU01[parent]}:</label>
+        {parent_select}</p>
+      </div>
+
+      <div class="required">
+        <p><label for="menulabel">{LANG_MENU01[elementlabel]}:</label>
+        <input type="text" id="menulabel" name="menulabel" size="48" value="{menulabel}"{xhtml}></p>
+      </div>
+      <div id="displayafter" class="required">
+        <p><label for="menuorder">{LANG_MENU01[display_after]}:</label>
+        {order_select}</p>
+      </div>
+      <div class="required">
+        <p><label for="menutype">{LANG_MENU01[type]}:</label>
+        {type_select}</p>
+      </div>
+      <div id="urldiv" class="required">
+        <p><label for="menuurl">{LANG_MENU01[url]}:</label>
+        <input type="text" id="menuurl" name="menuurl" size="48" value="{menuurl}"{xhtml}></p>
+      </div>
+
+      <div id="targetdiv" class="required">
+        <p><label for="urltarget">{LANG_MENU01[target]}:</label>
+        {target_select}</p>
+      </div>
+
+      <div id="phpdiv" class="required">
+        <p><label for="phpfunction">{LANG_MENU01[php]}:</label>
+        <input type="text" id="phpfunction" name="phpfunction" size="48" value="{phpfunction}"{xhtml}></p>
+      </div>
+      <div id="glcorediv" class="optional required">
+        <p><label for="gltype">{LANG_MENU01[coretype]}:</label>
+        {gl_select}</p>
+      </div>
+
+      <div id="plugin" class="optional required">
+        <p><label for="gltype">{LANG_MENU01[plugins]}:</label>
+        {plugin_select}</p>
+      </div>
+
+      <div id="staticpage" class="optional required">
+        <p><label for="spname">{LANG_MENU01[static_pages]}:</label>
+        {sp_select}</p>
+      </div>
+
+      <div id="topic" class="optional required">
+        <p><label for="topicname">{LANG_MENU01[topic]}:</label>
+        {topic_select}</p>
+      </div>
+
+      <div id="glfunc" class="optional required">
+        <p><label for="spname">{LANG_MENU01[geeklog_function]}:</label>
+        {glfunction_select}</p>
+      </div>
+
+      <div class="required">
+        <p><label for="menuactive">{LANG_MENU01[active]}:</label>
+        <input type="checkbox" id="menuactive" name="menuactive" value="1" {active_selected} {xhtml}></p>
+      </div>
+
+      <div class="required">
+        <p><label for="group">{LANG_MENU01[permission]}:</label>
+        {group_select}</p>
+      </div>
+    <div style="text-align:center;padding-top:20px;padding-bottom:10px;">
+      <input type="hidden" id="mode" name="mode" value="saveedit"{xhtml}>
+      <input type="submit" id="execute" name="execute" value="{LANG_MENU01[save]}"{xhtml}>&nbsp;&nbsp;
+      <input type="submit" id="cancel" name="cancel" value="{LANG_MENU01[cancel]}"{xhtml}>
+    </div>
+  </form>
+</div>
