@@ -51,8 +51,7 @@ function plugin_autoinstall_menu($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '1.2.6
-		',
+        'pi_version'      => '1.2.6',
         'pi_gl_version'   => '1.8.0',
         'pi_homepage'     => 'http://geeklog.fr'
     );
