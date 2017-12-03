@@ -64,6 +64,10 @@ if (!isset($_MENU_CONF)) {
     
     $menu_config = config::get_instance();
     $_MENU_CONF = $menu_config->get_config('menu');
+	require_once __DIR__ . '/autoinstall.php';
+	$info = plugin_autoinstall_menu('menu');
+	$_MENU_CONF['pi_version'] = $info['info']['pi_version'];
+	unset($info);
 }
 /**
  * Menu plugin table(s)
@@ -334,6 +338,8 @@ function plugin_getheadercode_menu() {
 				$custom_css = $_CONF['path_data'] . 'menu_data/css/gl_menu' . $menu['menu_id'] . '.css';
 				if(file_exists($custom_css)) {
 					$custom_ccs_code = LB . file_get_contents($custom_css);
+				} else {
+					$custom_ccs_code = '';
 				}
 
                 if ( $retval ) {
@@ -407,7 +413,7 @@ function plugin_getheadercode_menu() {
                     $menu_header .= LB . '<style type="text/css">' . $css_minify . '</style>' . LB;
                 }
 				
-				$js .= LB . "jQuery(document).ready(function() {
+				$js = LB . "jQuery(document).ready(function() {
 					jQuery('#gl_menu" . $menu['menu_id'] . "').slicknav(({
 						label: '{$_CONF['site_name']}',
 						allowParentLinks: true,
@@ -555,7 +561,7 @@ function MENU_getMenu($name='navigation',$wrapper='',$ulclass='',$liclass='',$pa
         }
     }
     if ( $menuID == '' ) {
-        if ( $retval && $noid == 0) {
+        if ( !empty($retval) && $noid == 0) {
             return $retval;
         }
         $retval = '';
@@ -795,8 +801,7 @@ function MENU_CACHE_create_instance($iid, $data, $bypass_lang = false)
     }
 
     $filename = MENU_CACHE_instance_filename($iid, $bypass_lang);
-    file_put_contents($filename, $data);
-
+    @file_put_contents($filename, $data);
 }
 
 /******************************************************************************

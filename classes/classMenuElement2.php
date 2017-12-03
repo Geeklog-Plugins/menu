@@ -51,7 +51,7 @@ class mbElement {
     var $children;          // this elements child elements
     var $hidden;            // I have no idea -- Joe
 
-    function mbElement () {
+    public function __construct() {
         $this->children         = array();
         $this->id               = 0;
         $this->menu_id          = 0;
@@ -188,7 +188,7 @@ class mbElement {
 
             $retval .= '<td>';
 
-            $elementDetails .= '<b>' . $LANG_MENU01['type'] . ':</b> ' . $LANG_MENU_TYPES[$this->type] . '<br' . XHTML . '>';
+            $elementDetails = '<b>' . $LANG_MENU01['type'] . ':</b> ' . $LANG_MENU_TYPES[$this->type] . '<br' . XHTML . '>';
             /*switch ($this->type) {
                 case 1 :
                     break;
@@ -631,7 +631,7 @@ class mbElement {
                                     next( $plugin_options );
                                 }
 
-                                if(( $_CONF['allow_mysqldump'] == 1 ) AND ( $_DB_dbms == 'mysql' ) AND SEC_inGroup( 'Root' )) {
+                                if(isset($_CONF['allow_mysqldump']) && ( $_CONF['allow_mysqldump'] == 1 ) AND ( $_DB_dbms == 'mysql' ) AND SEC_inGroup( 'Root' )) {
                                     $url = $_CONF['site_admin_url'] . '/database.php';
                                     $label = $LANG01[103] . ' (N/A)';
                                     $link_array[$LANG01[103]] = '<li><a href="' . $url . '">' . $label . '</a></li>' . LB;
