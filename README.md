@@ -1,5 +1,5 @@
 # menu
-Geeklog menu plugin (menu). Menu plugin allows you to create menus for header, footer, blocks or any element with autotag [menu]. You can also to easily customize the look and feel of your menus by adjusting the values of each colors or choose images for background.
+Geeklog menu plugin (menu). Menu plugin allows you to create menus for header, footer, blocks or any element with autotag [menu]. You can also easily customize the look and feel of your menus by adjusting the values of each color or choose images for background.
 ##Docs
 http://geeklog.fr/downloads/index.php/menu
 ##Bugs & feature requests

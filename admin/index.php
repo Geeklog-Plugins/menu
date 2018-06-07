@@ -720,7 +720,7 @@ function MENU_createElement ( $menu_id ) {
     $usergroups = SEC_getUserGroups($rootUser);
     $usergroups[$LANG_MENU01['non-logged-in']] = 998;
     ksort($usergroups);
-    $group_select .= '<select id="group" name="group">' . LB;
+    $group_select = '<select id="group" name="group">' . LB;
 
     for ($i = 0; $i < count($usergroups); $i++) {
         $group_select .= '<option value="' . $usergroups[key($usergroups)] . '"';
@@ -736,8 +736,8 @@ function MENU_createElement ( $menu_id ) {
         'site_admin_url'    => $_CONF['site_admin_url'],
         'site_url'          => $_CONF['site_url'],
         'form_action'       => $_CONF['site_admin_url'] . '/plugins/menu/index.php',
-        'birdseed'          => '<a href="'.$_CONF['site_admin_url'].'/plugins/menu/index.php">'.$LANG_MENU01['menu_list'].'</a> :: <a href="'.$_CONF['site_admin_url'].'/plugins/menu/index.php?mode=menu&amp;menu='.$menu_id.'">'.$Menus[$menu_id]['menu_name'].'</a> :: '.$LANG_MENU01['create_elements'],
-        'menuname'          => $menu_name,
+        'birdseed'          => '<a href="'.$_CONF['site_admin_url'].'/plugins/menu/index.php">'.$LANG_MENU01['menu_list'].'</a> :: <a href="'.$_CONF['site_admin_url'].'/plugins/menu/index.php?mode=menu&amp;menu='.$menu_id.'">'.$Menus[$menu_id]['menu_name'].'</a> :: '.$LANG_MENU01['create_element'],
+        'menuname'          => @$menu_name,
         'menuid'            => $menu_id,
         'type_select'       => $type_select,
         'gl_select'         => $gl_select,
@@ -1356,7 +1356,7 @@ function MENU_menuConfig( $mid ) {
            $LANG_MENU_TYPES, $LANG_MENU_GLTYPES,$LANG_MENU_GLFUNCTION, $_SCRIPTS,
            $LANG_MENU_MENU_TYPES,$LANG_VC,$LANG_HS,$LANG_HC,$LANG_VS;
 	
-	$js .= '      jQuery(document).ready(
+	$js = '      jQuery(document).ready(
         function()
         {
             jQuery("#tmbg_sample").colorPicker();
