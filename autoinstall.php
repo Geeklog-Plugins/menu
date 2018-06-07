@@ -51,7 +51,7 @@ function plugin_autoinstall_menu($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '1.2.6',
+        'pi_version'      => '1.2.7',
         'pi_gl_version'   => '1.8.0',
         'pi_homepage'     => 'http://geeklog.fr'
     );
@@ -127,12 +127,6 @@ function plugin_compatible_with_this_version_menu($pi_name)
 function plugin_postinstall_menu($pi_name)
 {
     global $_CONF, $_TABLES;
-	
-	/* This code is for statistics ONLY */
-    $message =  'Completed menu plugin install: ' .date('m d Y',time()) . "   AT " . date('H:i', time()) . "\n";
-    $message .= 'Site: ' . $_CONF['site_url'] . ' and Sitename: ' . $_CONF['site_name'] . "\n";
-    $pi_version = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'menu'");
-    COM_mail("ben@geeklog.fr","$pi_name Version:$pi_version Install successfull",$message);
 	
 	// Create menu folder 
 	if (!is_dir($_CONF['path_images'] . 'menu')) {

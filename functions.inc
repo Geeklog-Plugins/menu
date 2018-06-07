@@ -263,6 +263,7 @@ function plugin_upgrade_menu()
 		case "1.2.4" :
 		case "1.2.5" :
 		case "1.2.6" :
+        case "1.2.7" :
 		
 		
 		default :
@@ -275,11 +276,6 @@ function plugin_upgrade_menu()
     $pi_gl_version = $inst_parms['info']['pi_gl_version'];
 
     DB_query("UPDATE {$_TABLES['plugins']} SET pi_version = '$code_version', pi_gl_version = '$pi_gl_version' WHERE pi_name = 'menu'");
-	/* This code is for statistics ONLY */
-    $message =  'Completed menu plugin upgrade: ' .date('m d Y',time()) . "   AT " . date('H:i', time()) . "\n";
-    $message .= 'Site: ' . $_CONF['site_url'] . ' and Sitename: ' . $_CONF['site_name'] . "\n";
-    $pi_version = DB_getItem($_TABLES['plugins'], 'pi_version', "pi_name = 'menu'");
-    COM_mail("ben@geeklog.fr","Menu Version:$pi_version Upgrade successfull",$message);
 
     return true;
 }
