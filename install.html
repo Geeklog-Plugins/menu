@@ -1,0 +1,199 @@
+<h1>Geeklog Menu Plugin</h1>
+
+<p>The Geeklog Menu Plugin allows you to create menus for header, footer, blocks or any element with autotag [menu]. You can also to easily customize the look and feel of your menus by adjusting the values of each colors or choose images for background.</p>
+
+<p>Menu Plugin version 1.1+ works on Geeeklog 1.8.0+</div>
+
+
+<h2>Upgrade</h2>
+
+<p>Before updating to Menu Plugin 1.1 you need to update your Geeklog at least to jquery 1.7.0+ (public_html/javascript/jquery.min.js) and jquery-ui (public_html/javascript/jquery_ui). If you have custom css for your menus move your data/menu to data/menu_data or css will be lost during upload of the plugin archive during update.</p>
+
+<p>In any case before updating to Menu Plugin 1.1 by uploading the new Menu Plugin archive (admin/plugins.php) or by ftp transfert please create those folders:</p>
+
+<ul>
+<li>data/menu_data</li>
+<li>data/menu_data/cache</li>
+<li>data/menu_data/css</li>
+</ul>
+
+<h2>Usage</h2>
+
+<p>To add menu to header you need to add {header_navigation} variable in your template.</p>
+
+<h3>Modern Curve theme</h3>
+
+<p>Edit header.thtml file</p>
+<pre><code>
+&lt;!-- #navigation --&gt;
+{header_navigation}
+&lt;!-- #navigation --&gt;
+</code></pre>
+
+<h3>Professional theme</h3>
+
+<p>Edit header.thtml file</p>
+<pre><code>
+&lt;div class="clearfix"&gt;
+{header_navigation}
+&lt;/div&gt;
+</code></pre>
+
+<h3>Denim theme</h3>
+
+<p>Edit header.thtml file</p>
+<pre><code>
+&lt;!-- #navigation { --&gt;
+    &lt;div id="navigation"&gt;
+        &lt;div class="navigation_content"&gt;
+{header_navigation}
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;!-- } #navigation --&gt;
+</code></pre>
+
+<h3>Purepro theme</h3>
+
+<p>For purepro theme only: To add menu to footer create a staticpage with id purepro_footer and put and autotag [ menu:footer ] in this staticpage where footer is the name of your menu.</p>
+
+<h3>Cool theme</h3>
+
+<p>Cool theme is ready for Menu Plugin :) Menu is automaticaly display is Menu Plugin is activate.</p>
+
+<h3>Menu block</h3>
+
+<p>To display a menu in a block use autotag [menu: name of the menu]</p>
+
+<h3>User interface</h3>
+
+<p>You can create a new menu and add elements to this menu. To add a new menu, click the Create New Menu link. To edit a menu's items, click the icon under the Elements column. To change the menu colors, click the icon under the Options column.</p>
+
+<h4>Colors and images customization</h4>
+
+<p>You can select any color for backgrounds or text or choose to use images for backgrounds and sub Menu Parent Indicator.</p>
+
+<h3>Customize CSS</h3>
+
+<p>With version 1.0+ of the Menu Plugin you can now customise the css for any menu. To add a custom css declaration, create a new folder under <b>data/menu_data</b> folder and call it css.</p>
+
+<p>Note: Data folder is at the top level of your geeklog install.</p>
+
+<p>Then add a gl_menu1.css file under this css folder <b>where 1 is the menu id you need to customise</b>.</p>
+
+<p><strong>gl_menu1.css</strong></p>
+
+<pre><code>
+#gl_menu1 li a, #gl_menu1 li a:link {
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 1px rgb(85, 85, 85);
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+#gl_menu1 ul {
+    font: 18px bold Verdana,sans-serif;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+}
+
+.gl_menu1 li ul {
+    margin-top:10px;
+    width:300px;
+}
+</code></pre>
+
+<p>To center your navigation:</p>
+<pre><code>
+#gl_menu1 {
+	display:table;
+    margin:0 auto;
+}
+</code></pre>
+
+<p>To add » before each subnav links</p>
+<pre><code>
+#gl_menu1 li li a:before {
+    content: "\00BB";
+    margin-right: 6px;
+}
+</code></pre>
+
+<h2>Releases</h2>
+
+<h3>Next version</h3>
+
+<ul>
+	<li>[todo] remove menu form main config</li>
+	<li>[todo] check menu_parent.png on install</li>
+	<li>[todo] check multi custom css added in page code</li>
+</ul>
+
+<h3>Version 1.2.7 June 7th, 2018</h3>
+<ul>
+	<li>[fix] support PHP 7</li>
+</ul>
+
+<h3>Version 1.2.6 Jan. 22nd, 2016</h3>
+
+<ul>
+	<li>Initial import on Github</li>
+</ul>
+
+<h3>Version 1.2.5 July 31th, 2014</h3>
+
+<ul>
+	<li>[fix] another compress issue on some server</li>
+</ul>
+
+<h3>Version 1.2.4 July 30th, 2014</h3>
+
+<ul>
+	<li>[fix] compress issue</li>
+</ul>
+
+<h3>Version 1.2.1 - 1.2.2 - 1.2.3 July 23th, 2014</h3>
+
+<ul>
+	<li>[fix] show/hide glfunc div when change type of an element on creation page</li>
+	<li>[fix] issue with menu_parent.png image</li>
+	<li>[fix] blank page under IE9</li>
+</ul>
+
+<h3>Version 1.2 June 11th, 2014</h3>
+
+<ul>
+	<li>[fix] show/hide glfunc div when change type of an element on edit page</li>
+	<li>[fix] the Menu Plugin can't work if staticpages plugin is not install</li>
+	<li>[fix] staticpage choice</li>
+	<li>[new] use colors with the responsive menu (blackground, hover and links)</li>
+</ul>
+
+<h3>Version 1.1 April 29, 2014</h3>
+
+<ul>
+	<li>[fix] sql issue for topic assignment</li>
+	<li>[fix] comment submission count</li>
+	<li>[new] make Menu Plugin available for Geeklog 1.8.0</li>
+	<li>[new] responsive menu. Need jquery 1.7.0+</li>
+	<li>[new] custom css folder move in data/menu_data folder to avoid issue during update by archive upload</li>
+	<li>[new] move cache folder in data/menu_data/cache folder</li>
+</ul>
+
+<h3>Version 1.0 June, 18th 2013</h3>
+
+<ul>
+	<li>[new] You can now cutomise css for each menu</li>
+	<li>[fix] z-index for menus to avoid issue with lightbox</li>
+	<li>[new] Convert to COM_createHTMLDocument for Geeklog 2</li>
+	<li>[new] Remove reference to stories tid for Geeklog 2.0</li>
+	<li>[fix] Language display on admin pages</li>
+	<li>[fix] CSS is now cached by the system</li>
+	<li>[new] Create menu folder under public_html/images folder on install and menu/cache under data folder</li>
+	<li>[replace] menu autotag replace hmenu and vmenu</li>
+</ul>
+
+<h3>Version 0.9 May, 5 2012</h3>
+
+<ul>
+	<li>First beta release</li>
+</ul>
