@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Menu Plugin 1.0                                                           |
+// | Menu Plugin 1.2.8                                                         |
 // +---------------------------------------------------------------------------+
 // | mysql_install.php                                                         |
 // |                                                                           |
 // | Installation SQL                                                          |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2012 by the following authors:                              |
+// | Copyright (C) 2012-2018 by the following authors:                         |
 // |                                                                           |
 // | Authors: Ben - ben AT geeklog DOT fr                                      |
 // |                                                                           |
@@ -148,5 +148,3 @@ $_SQL[] = "INSERT INTO {$_TABLES['menu_elements']} (`id`, `pid`, `menu_id`, `ele
 (21, 0, 3, 'Admin Options', 3, '2', 60, 1, '', '', 1),
 (22, 0, 3, 'Logout', 6, '%site_url%/users.php?mode=logout', 70, 1, '%site_url%/users.php?mode=logout', '', 13);
 ";
-
-?>

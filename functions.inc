@@ -2,21 +2,21 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Menu Plugin 1.2.5                                                         |
+// | Menu Plugin 1.2.8                                                         |
 // +---------------------------------------------------------------------------+
 // | functions.inc                                                             |
 // |                                                                           |
 // | This file does two things: 1) it implements the necessary Geeklog Plugin  |
 // | API methods and 2) implements all the common code needed by this plugin.  |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2012-2014 by the following authors:                         |
+// | Copyright (C) 2012-2018 by the following authors:                         |
 // |                                                                           |
 // | Authors: Ben - ben AT geeklog DOT fr                                      |
 // |                                                                           |
 // | Based on the original Sitetailor Plugin                                   |
 // | Copyright (C) 2008-2011 by the following authors:                         |
 // |                                                                           |
-// | Mark R. Evans - mark AT glfusion DOT org                                  | 
+// | Mark R. Evans - mark AT glfusion DOT org                                  |
 // +---------------------------------------------------------------------------+
 // | Created with the Geeklog Plugin Toolkit.                                  |
 // +---------------------------------------------------------------------------+
@@ -41,7 +41,7 @@
 * @package Menu
 */
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.inc') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die ('This file can not be used on its own.');
 }
 
@@ -61,13 +61,13 @@ if (file_exists($langfile)) {
 */ 
 if (!isset($_MENU_CONF)) {
     require_once $_CONF['path_system'] . 'classes/config.class.php';
-    
+
     $menu_config = config::get_instance();
     $_MENU_CONF = $menu_config->get_config('menu');
-	require_once __DIR__ . '/autoinstall.php';
-	$info = plugin_autoinstall_menu('menu');
-	$_MENU_CONF['pi_version'] = $info['info']['pi_version'];
-	unset($info);
+    require_once __DIR__ . '/autoinstall.php';
+    $info = plugin_autoinstall_menu('menu');
+    $_MENU_CONF['pi_version'] = $info['info']['pi_version'];
+    unset($info);
 }
 /**
  * Menu plugin table(s)
@@ -118,18 +118,18 @@ function plugin_autotags_menu($op,$content='',$autotag='') {
                 if ( $id > 0 ) {
                     if ( $Menus[$id]['menu_type'] == 1 ) {
                         // Horizontal menu
-						$menu = MENU_getMenu($menuID,"gl_menu","gl_menu",'',"parent");
+                        $menu = MENU_getMenu($menuID,"gl_menu","gl_menu",'',"parent");
                     } else if ( $Menus[$id]['menu_type'] == 2 ) {
                         
-						$menu = MENU_getMenu($menuID,'st-fmenu','','','','st-f-last');
+                        $menu = MENU_getMenu($menuID,'st-fmenu','','','','st-f-last');
                     } else if ( $Menus[$id]['menu_type'] == 3 ) {
-					    // Block menu
-						$menu = phpblock_getMenu('',trim($autotag['parm1']));
-					} else if ( $Menus[$id]['menu_type'] == 4 ) {
-					    // Block menu
-						$menu = MENU_getMenu($menuID,'st-vmenu','','','');
-					} 
-					
+                        // Block menu
+                        $menu = phpblock_getMenu('',trim($autotag['parm1']));
+                    } else if ( $Menus[$id]['menu_type'] == 4 ) {
+                        // Block menu
+                        $menu = MENU_getMenu($menuID,'st-vmenu','','','');
+                    } 
+                    
                     $content = str_replace($autotag['tagstr'],$menu,$content);
                 } else {
                     $content = str_replace($autotag['tagstr'],$menu,$content);
@@ -233,43 +233,43 @@ function plugin_upgrade_menu()
     }
 
     // other update code goes here
-	
-	switch( $currentVersion ) {
-	    
-		case "0.9" :
-		    
-			// Create menu folder 
-			if (!is_dir($_CONF['path_images'] . 'menu')) {
-				@mkdir($_CONF['path_images'] . 'menu');
-			}
-			// Create cache folder 
-			if (!is_dir($_CONF['path_data'] . 'menu')) {
-				@mkdir($_CONF['path_data'] . 'menu');
-				@mkdir($_CONF['path_data'] . 'menu/cache');
-			}
-	
-		case "1.0" :
-		    // Create new cache folder 
-			if (!is_dir($_CONF['path_data'] . 'menu_data')) {
-				@mkdir($_CONF['path_data'] . 'menu_data');
-				@mkdir($_CONF['path_data'] . 'menu_data/cache');
-				@mkdir($_CONF['path_data'] . 'menu_data/css');
+    
+    switch( $currentVersion ) {
+        
+        case "0.9" :
+            
+            // Create menu folder 
+            if (!is_dir($_CONF['path_images'] . 'menu')) {
+                @mkdir($_CONF['path_images'] . 'menu');
             }
-		case "1.1" :
-		case "1.2" :
-		case "1.2.1" :
-		case "1.2.2" :
-		case "1.2.3" :
-		case "1.2.4" :
-		case "1.2.5" :
-		case "1.2.6" :
+            // Create cache folder 
+            if (!is_dir($_CONF['path_data'] . 'menu')) {
+                @mkdir($_CONF['path_data'] . 'menu');
+                @mkdir($_CONF['path_data'] . 'menu/cache');
+            }
+    
+        case "1.0" :
+            // Create new cache folder 
+            if (!is_dir($_CONF['path_data'] . 'menu_data')) {
+                @mkdir($_CONF['path_data'] . 'menu_data');
+                @mkdir($_CONF['path_data'] . 'menu_data/cache');
+                @mkdir($_CONF['path_data'] . 'menu_data/css');
+            }
+        case "1.1" :
+        case "1.2" :
+        case "1.2.1" :
+        case "1.2.2" :
+        case "1.2.3" :
+        case "1.2.4" :
+        case "1.2.5" :
+        case "1.2.6" :
         case "1.2.7" :
-		
-		
-		default :
-		    MENU_CACHE_cleanup_plugin('');
-	
-	}
+        case '1.2.8':
+        
+        default :
+            MENU_CACHE_cleanup_plugin('');
+    
+    }
 
     // update plugin version number
     $inst_parms = plugin_autoinstall_menu('menu');
@@ -312,14 +312,14 @@ function plugin_autouninstall_menu()
 
 function plugin_getheadercode_menu() {
     global $_CONF, $Menus, $_SCRIPTS;
-	
-	//slicknav
-	$_SCRIPTS->setCSSFile('menu_slicknav', '/menu/css/slicknav.css');
-	$_SCRIPTS->setJavaScriptFile('slicknav', '/menu/js/jquery.slicknav.js');
+    
+    //slicknav
+    $_SCRIPTS->setCSSFile('menu_slicknav', '/menu/css/slicknav.css');
+    $_SCRIPTS->setJavaScriptFile('slicknav', '/menu/js/jquery.slicknav.js');
 
     $menu_header = '';
     $this_dir = basename( dirname( $_SERVER['SCRIPT_NAME'] ) );
-	if ( $this_dir == 'menu' ) {
+    if ( $this_dir == 'menu' ) {
         $menu_header .= '<meta http-equiv="cache-control" content="no-cache" />' . LB;
         $menu_header .= '<meta http-equiv="pragma" content="no-cache" />' . LB;
     }
@@ -329,22 +329,22 @@ function plugin_getheadercode_menu() {
             if ( $menu['active'] == 1 ) {
                 $cacheInstance = 'menu_css_' . $menu['menu_id'] . '__' . $_CONF['theme'];
                 $retval = MENU_CACHE_check_instance($cacheInstance, 0);
-				
-				//Custom CSS
-				$custom_css = $_CONF['path_data'] . 'menu_data/css/gl_menu' . $menu['menu_id'] . '.css';
-				if(file_exists($custom_css)) {
-					$custom_ccs_code = LB . file_get_contents($custom_css);
-				} else {
-					$custom_ccs_code = '';
-				}
+                
+                //Custom CSS
+                $custom_css = $_CONF['path_data'] . 'menu_data/css/gl_menu' . $menu['menu_id'] . '.css';
+                if(file_exists($custom_css)) {
+                    $custom_ccs_code = LB . file_get_contents($custom_css);
+                } else {
+                    $custom_ccs_code = '';
+                }
 
                 if ( $retval ) {
                     $css_minify = MENU_compress( $retval . $custom_ccs_code);
-					$menu_header .= LB. '<style type="text/css">'. $css_minify . '</style>' . LB;
+                    $menu_header .= LB. '<style type="text/css">'. $css_minify . '</style>' . LB;
                 } else {
                     $ms = new Template( $_CONF['path'].'plugins/menu/templates/' );
-					$ms->set_var('under',50);
-					$ms->set_var('over',99);
+                    $ms->set_var('under',50);
+                    $ms->set_var('over',99);
                     switch ($menu['menu_type']) {
                         case 1 :    // horizontal with multi-level
                             $stylefile = 'gl_horizontal-cascading.thtml';
@@ -354,11 +354,11 @@ function plugin_getheadercode_menu() {
                             break;
                         case 3 :
                             $stylefile = 'gl_vertical-cascading.thtml';
-							$ms->set_var('under',25);
+                            $ms->set_var('under',25);
                             break;
                         case 4 :
                             $stylefile = 'gl_vertical-simple.thtml';
-							$ms->set_var('under',25);
+                            $ms->set_var('under',25);
                             break;
                         default :
                             $stylefile = 'gl_horizontal-cascading.thtml';
@@ -368,21 +368,21 @@ function plugin_getheadercode_menu() {
                         'style'        => $stylefile,
                     ));
                     $ms->set_var('menu_id',$menu['menu_id']);
-					
-					$ms->set_var('site_url',$_CONF['site_url']);
+                    
+                    $ms->set_var('site_url',$_CONF['site_url']);
                     if ( is_array($menu['config']) ) {
                         foreach ($menu['config'] AS $name => $value ) {
                             if ( $name == 'use_images' && $value == 0 ) {
-								$ms->set_var('url1','');
-								$ms->set_var('url2','');
-								continue;
+                                $ms->set_var('url1','');
+                                $ms->set_var('url2','');
+                                continue;
                             } else if ( $name == 'use_images' && $value == 1 ){
-							    $url1 = "url({$_CONF['site_url']}/images/menu/{menu_bg_filename}) repeat-x";
-								$url2 = "url({$_CONF['site_url']}/images/menu/{menu_hover_filename}) repeat-x";
-								$ms->set_var('url1',$url1);
-								$ms->set_var('url2',$url2);
-								continue;
-							}
+                                $url1 = "url({$_CONF['site_url']}/images/menu/{menu_bg_filename}) repeat-x";
+                                $url2 = "url({$_CONF['site_url']}/images/menu/{menu_hover_filename}) repeat-x";
+                                $ms->set_var('url1',$url1);
+                                $ms->set_var('url2',$url2);
+                                continue;
+                            }
                             $ms->set_var($name,$value);
                         }
                     }
@@ -394,53 +394,53 @@ function plugin_getheadercode_menu() {
 
                     $ms->parse ('output', 'style');
                     $fCSS = $ms->finish ($ms->get_var('output'));
-					
-					//slicknav css
-					if ($menu['menu_type'] == 1) {
-					    $slicknave_css = " .slicknav_menu { display:none; } @media screen and (max-width: 750px) { #gl_menu" . $menu['menu_id'] . " { display:none; } .slicknav_menu { display:block; } }";
-					} else {
-					     $slicknave_css = '';
-					}
-						
-					$fCSS = $fCSS . $slicknave_css;
-					
+                    
+                    //slicknav css
+                    if ($menu['menu_type'] == 1) {
+                        $slicknave_css = " .slicknav_menu { display:none; } @media screen and (max-width: 750px) { #gl_menu" . $menu['menu_id'] . " { display:none; } .slicknav_menu { display:block; } }";
+                    } else {
+                         $slicknave_css = '';
+                    }
+                        
+                    $fCSS = $fCSS . $slicknave_css;
+                    
                     MENU_CACHE_create_instance($cacheInstance, $fCSS, 0);
-					$css_minify = MENU_compress( $fCSS . $custom_ccs_code);
+                    $css_minify = MENU_compress( $fCSS . $custom_ccs_code);
                     $menu_header .= LB . '<style type="text/css">' . $css_minify . '</style>' . LB;
                 }
-				
-				$js = LB . "jQuery(document).ready(function() {
-					jQuery('#gl_menu" . $menu['menu_id'] . "').slicknav(({
-						label: '{$_CONF['site_name']}',
-						allowParentLinks: true,
-					}));
-					jQuery( '.slicknav_nav .gl_menu" . $menu['menu_id'] . "' ).removeClass( 'gl_menu" . $menu['menu_id'] . "' );
-				});" . LB;
-				
-				/*
-				Available Options for jQuery slicknav plugin
-				Property 	Default 	Description
-				label 	"MENU" 	Label for menu button. Use an empty string for no label.
-				duplicate 	true 	If true, a copy of the menu element is made for the mobile menu. This allows for separate functionality for both mobile and non-mobile versions.
-				duration 	200 	The duration of the sliding animation.
-				easingOpen 	"swing" 	Easing used for open animations. "Swing" and "Linear" are available with jQuery. More easing functions are available with the use of plug-ins, such as jQuery UI.
-				easingClose 	"swing" 	Easing used for close animations. "Swing" and "Linear" are available with jQuery. More easing functions are available with the use of plug-ins, such as jQuery UI.
-				closedSymbol 	"&#9658;" 	Character after collapsed parents..
-				openedSymbol 	"&#9660;" 	Character after expanded parents.
-				prependTo 	"body" 	Element, jQuery object, or jQuery selector string for the element to prepend the mobile menu to.
-				parentTag 	"a" 	Element type for parent menu items. Anchor tag is recommended for accessibility.
-				closeOnClick 	false 	Close menu when a link is clicked. Useful when navigating within a single page.
-				allowParentLinks 	false 	Allow clickable links as parent elements. 
-				*/
+                
+                $js = LB . "jQuery(document).ready(function() {
+                    jQuery('#gl_menu" . $menu['menu_id'] . "').slicknav(({
+                        label: '{$_CONF['site_name']}',
+                        allowParentLinks: true,
+                    }));
+                    jQuery( '.slicknav_nav .gl_menu" . $menu['menu_id'] . "' ).removeClass( 'gl_menu" . $menu['menu_id'] . "' );
+                });" . LB;
+                
+                /*
+                Available Options for jQuery slicknav plugin
+                Property    Default     Description
+                label   "MENU"  Label for menu button. Use an empty string for no label.
+                duplicate   true    If true, a copy of the menu element is made for the mobile menu. This allows for separate functionality for both mobile and non-mobile versions.
+                duration    200     The duration of the sliding animation.
+                easingOpen  "swing"     Easing used for open animations. "Swing" and "Linear" are available with jQuery. More easing functions are available with the use of plug-ins, such as jQuery UI.
+                easingClose     "swing"     Easing used for close animations. "Swing" and "Linear" are available with jQuery. More easing functions are available with the use of plug-ins, such as jQuery UI.
+                closedSymbol    "&#9658;"   Character after collapsed parents..
+                openedSymbol    "&#9660;"   Character after expanded parents.
+                prependTo   "body"  Element, jQuery object, or jQuery selector string for the element to prepend the mobile menu to.
+                parentTag   "a"     Element type for parent menu items. Anchor tag is recommended for accessibility.
+                closeOnClick    false   Close menu when a link is clicked. Useful when navigating within a single page.
+                allowParentLinks    false   Allow clickable links as parent elements. 
+                */
             }
         }
     }
     
-	//slicknav js   
+    //slicknav js   
     $_SCRIPTS->setJavaScriptLibrary('jquery');
     $_SCRIPTS->setJavaScript($js, true);
-	
-	//$menu_header .= "<script defer type=\"text/javascript\" src=\"" . $_CONF['site_url'] . '/menu/js/menu_ie6vertmenu.js"' . XHTML . '>' . LB;
+    
+    //$menu_header .= "<script defer type=\"text/javascript\" src=\"" . $_CONF['site_url'] . '/menu/js/menu_ie6vertmenu.js"' . XHTML . '>' . LB;
     return $menu_header;
 }
 
@@ -636,7 +636,7 @@ function phpblock_getMenu($arg1,$arg2) {
 }
 
 function MENU_getImageFile($image) {
-	global $_CONF;
+    global $_CONF;
 
     return $_CONF['site_admin_url'] . '/plugins/menu/images/' . $image;
 }
@@ -675,11 +675,11 @@ function plugin_templatesetvars_menu ($templatename, &$template)
 {
     // Prevent from execution immediately behind the uninstallation of this plugin
     if (!DB_checkTableExists('menu')) return;
-	$menu = MENU_getMenu('navigation',"gl_menu","gl_menu",'',"parent");
+    $menu = MENU_getMenu('navigation',"gl_menu","gl_menu",'',"parent");
     $template->set_var('header_navigation',$menu);
-	$menu_footer = MENU_getMenu('footer',"st-fmenu","st-fmenu",'',"parent");
-	$template->set_var('menu_footer',$menu_footer);
-	$template->set_var('breadcrumbs', '');
+    $menu_footer = MENU_getMenu('footer',"st-fmenu","st-fmenu",'',"parent");
+    $template->set_var('menu_footer',$menu_footer);
+    $template->set_var('breadcrumbs', '');
 }
 
 $MENU_TEMPLATE_OPTIONS = array(
@@ -924,10 +924,9 @@ function MENU_CACHE_security_hash()
 
 function MENU_compress($buffer) {
     
-	/* remove comments */
+    /* remove comments */
     $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
     /* remove tabs, spaces, newlines, etc. */
     $buffer = str_replace(array("\r\n", "\r", "\n"), '', $buffer);
     return $buffer;
 }
-?>

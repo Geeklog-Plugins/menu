@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Menu Plugin 1.2.5                                                         |
+// | Menu Plugin 1.2.8                                                         |
 // +---------------------------------------------------------------------------+
 // | autoinstall.php                                                           |
 // |                                                                           |
 // | This file provides helper functions for the automatic plugin install.     |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2014 by the following authors:                              |
+// | Copyright (C) 2014-2018 by the following authors:                         |
 // |                                                                           |
 // | Authors: Ben - ben AT geeklog DOT fr                                      |
 // +---------------------------------------------------------------------------+
@@ -51,8 +51,8 @@ function plugin_autoinstall_menu($pi_name)
     $info = array(
         'pi_name'         => $pi_name,
         'pi_display_name' => $pi_display_name,
-        'pi_version'      => '1.2.7',
-        'pi_gl_version'   => '1.8.0',
+        'pi_version'      => '1.2.8',
+        'pi_gl_version'   => '2.1.2',
         'pi_homepage'     => 'http://geeklog.fr'
     );
 
@@ -72,7 +72,7 @@ function plugin_autoinstall_menu($pi_name)
 
     $tables = array(
         'menu',
-		'menu_config',
+        'menu_config',
         'menu_elements'
     );
 
@@ -86,6 +86,7 @@ function plugin_autoinstall_menu($pi_name)
 
     return $inst_parms;
 }
+
 /**
 Create the initial configuration for the plugin
 */
@@ -100,7 +101,7 @@ function plugin_load_configuration_menu($pi_name)
 
     return plugin_initconfig_menu();
 }
-	
+
 /**
 * Check if the plugin is compatible with this Geeklog version
 *
@@ -127,18 +128,17 @@ function plugin_compatible_with_this_version_menu($pi_name)
 function plugin_postinstall_menu($pi_name)
 {
     global $_CONF, $_TABLES;
-	
-	// Create menu folder 
-	if (!is_dir($_CONF['path_images'] . 'menu')) {
-		@mkdir($_CONF['path_images'] . 'menu');
-	}
-	// Create cache folder 
-	if (!is_dir($_CONF['path_data'] . 'menu_data')) {
-				@mkdir($_CONF['path_data'] . 'menu_data');
-				@mkdir($_CONF['path_data'] . 'menu_data/cache');
-				@mkdir($_CONF['path_data'] . 'menu_data/css');
+    
+    // Create menu folder 
+    if (!is_dir($_CONF['path_images'] . 'menu')) {
+        @mkdir($_CONF['path_images'] . 'menu');
+    }
+    // Create cache folder 
+    if (!is_dir($_CONF['path_data'] . 'menu_data')) {
+                @mkdir($_CONF['path_data'] . 'menu_data');
+                @mkdir($_CONF['path_data'] . 'menu_data/cache');
+                @mkdir($_CONF['path_data'] . 'menu_data/css');
             }
 
-	return true;
+    return true;
 }
-?>

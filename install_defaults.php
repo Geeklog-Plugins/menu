@@ -2,13 +2,13 @@
 
 /* Reminder: always indent with 4 spaces (no tabs). */
 // +---------------------------------------------------------------------------+
-// | Menu Plugin 1.0                                                           |
+// | Menu Plugin 1.2.8                                                         |
 // +---------------------------------------------------------------------------+
 // | install_defaults.php                                                      |
 // |                                                                           |
 // | This file is used to hook into Geeklog's configuration UI                 |
 // +---------------------------------------------------------------------------+
-// | Copyright (C) 2012 by the following authors:                              |
+// | Copyright (C) 2012-2018 by the following authors:                         |
 // |                                                                           |
 // | Authors: Ben - ben AT geeklog DOT fr                                      |
 // +---------------------------------------------------------------------------+
@@ -35,7 +35,7 @@
 * @package Menu
 */
 
-if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.inc') !== false) {
+if (stripos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     die ('This file can not be used on its own.');
 }
 
@@ -85,5 +85,3 @@ function plugin_initconfig_menu()
 
     return true;
 }
-?>
-
