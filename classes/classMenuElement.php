@@ -59,7 +59,7 @@ class mbElement {
     }
 
     function constructor( $element, $meadmin, $root, $groups ) {
-        $this->id               = $element['id'];
+        $this->id               = isset($element['id']) ? $element['id'] : null;
         $this->pid              = $element['pid'];
         $this->menu_id          = $element['menu_id'];
         $this->label            = (!empty($element['element_label']) && $element['element_label'] != ' ') ? $element['element_label'] : '';
@@ -694,8 +694,11 @@ class mbElement {
 
                         $sql = "SELECT tid,topic,imageurl FROM {$_TABLES['topics']} WHERE 1=1" . $langsql;
                         if( !empty( $_USER['uid'] ) && ( $_USER['uid'] > 1 )) {
-                            $tids = DB_getItem( $_TABLES['userindex'], 'tids',
-                                                "uid = {$_USER['uid']}" );
+                            if (COM_versionCompare(VERSION, '2.2.2', '>=')) {
+                                $tids = [];
+                            } else {
+                                $tids = DB_getItem( $_TABLES['userindex'], 'tids', "uid = {$_USER['uid']}" );
+                            }
                             if( !empty( $tids )) {
                                 $sql .= " AND (tid NOT IN ('" . str_replace( ' ', "','", $tids )
                                      . "'))" . COM_getPermSQL( 'AND' );
@@ -705,7 +708,7 @@ class mbElement {
                         } else {
                             $sql .= COM_getPermSQL( 'AND' );
                         }
-						 
+
                         if( $_CONF['sortmethod'] == 'alpha' ) {
                             $sql .= ' ORDER BY topic ASC';
                         } else {
@@ -718,7 +721,7 @@ class mbElement {
                             $topicname = stripslashes( $A['topic'] );
                             $url =  $_CONF['site_url'] . '/index.php?topic=' . $A['tid'];
                             $label = $topicname;
-							/*
+                            /*
                             $countstring = '';
                             if( $_CONF['showstorycount'] || $_CONF['showsubmissioncount'] ) {
                                 $countstring .= ' (';

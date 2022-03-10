@@ -37,6 +37,8 @@
 // |                                                                           |
 // +---------------------------------------------------------------------------+
 
+global $_DB_table_prefix, $_TABLES;
+
 /**
 * @package Menu
 */
@@ -234,7 +236,7 @@ function plugin_upgrade_menu()
 
     // other update code goes here
     
-    switch( $currentVersion ) {
+    switch( $installed_version ) {
         
         case "0.9" :
             
@@ -707,25 +709,33 @@ $MENU_TEMPLATE_OPTIONS = array(
  * @param  $path            Directory path being cleaned
  * @param  $needle          String matched against cache filenames
  * @access private
- * @return void
- *
+ * @return bool             true when all items in the directory were
+ *                          successfully removed, false otherwise
  */
 function MENU_cache_clean_directories($path, $needle = '', $since = 0)
 {
+    $retval = true;
+
     if ($dir = @opendir($path)) {
         while (false !== ($entry = readdir($dir))) {
             if ($entry == '.' || $entry == '..' || $entry == '.svn' || is_link($entry)) {
             } elseif (is_dir($path . '/' . $entry)) {
-                MENU_cache_clean_directories($path . '/' . $entry, $needle);
-                @rmdir($path . '/' . $entry);
+                $retval = $retval && MENU_cache_clean_directories($path . '/' . $entry, $needle);
+                $retval = $retval && @rmdir($path . '/' . $entry);
             } elseif (empty($needle) || strpos($entry, $needle) !== false) {
                 if (!$since || @filectime($path . '/' . $entry) <= $since) {
-                    @unlink($path . '/' . $entry);
+                    $retval = $retval && @unlink($path . '/' . $entry);
+                } else {
+                    $retval = false;
                 }
+            } else {
+                $retval = false;
             }
         }
         @closedir($dir);
     }
+
+    return $retval;
 }
 
 /******************************************************************************
@@ -791,7 +801,7 @@ function MENU_CACHE_create_instance($iid, $data, $bypass_lang = false)
 
     if ($MENU_TEMPLATE_OPTIONS['cache_by_language']) {
         if (!is_dir($MENU_TEMPLATE_OPTIONS['path_cache'] . $_CONF['language'])) {
-            @mkdir($MENU_TEMPLATE_OPTIONS['path_cache'] . $_CONF['language']);
+            @mkdir($MENU_TEMPLATE_OPTIONS['path_cache'] . $_CONF['language'], 0777, true);
             @touch($MENU_TEMPLATE_OPTIONS['path_cache'] . $_CONF['language'] . '/index.html');
         }
     }

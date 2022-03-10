@@ -737,7 +737,7 @@ function MENU_createElement ( $menu_id ) {
         'site_url'          => $_CONF['site_url'],
         'form_action'       => $_CONF['site_admin_url'] . '/plugins/menu/index.php',
         'birdseed'          => '<a href="'.$_CONF['site_admin_url'].'/plugins/menu/index.php">'.$LANG_MENU01['menu_list'].'</a> :: <a href="'.$_CONF['site_admin_url'].'/plugins/menu/index.php?mode=menu&amp;menu='.$menu_id.'">'.$Menus[$menu_id]['menu_name'].'</a> :: '.$LANG_MENU01['create_element'],
-        'menuname'          => @$menu_name,
+        'menuname'          => isset($menu_name) ? $menu_name : '',
         'menuid'            => $menu_id,
         'type_select'       => $type_select,
         'gl_select'         => $gl_select,
